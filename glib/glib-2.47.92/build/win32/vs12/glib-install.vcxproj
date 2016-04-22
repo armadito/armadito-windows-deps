@@ -119,32 +119,12 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="gio.vcxproj">
-      <Project>{f3d1583c-5613-4809-bd98-7cc1c1276f92}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="glib-genmarshal.vcxproj">
-      <Project>{bd12e835-5c52-4e5d-8234-1c579f33e27a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="glib.vcxproj">
       <Project>{12bca020-eabf-429e-876a-a476bc9c10c0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="gmodule.vcxproj">
       <Project>{4214047c-f5c1-40b3-8369-5dced8c32770}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gobject.vcxproj">
-      <Project>{f172effc-e30f-4593-809e-db2024b1e753}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gspawn-win32-helper-console.vcxproj">
-      <Project>{e40e8a7e-7cae-4659-9b8b-bc38898e3074}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gspawn-win32-helper.vcxproj">
-      <Project>{289240e7-e167-47ce-a20c-58d852e520ba}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="gthread.vcxproj">
@@ -155,24 +135,8 @@
       <Project>{015d69d0-8b42-438a-adae-052ac036e065}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="gsettings.vcxproj">
-      <Project>{05041c63-f1c5-49ba-a7de-61ebb5307eaa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="glib-compile-resources.vcxproj">
       <Project>{b0cdec7f-dce1-4f7e-b8a4-a3009c18fb2a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gresource.vcxproj">
-      <Project>{95a1571f-61be-4c51-be53-2f2dab280685}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gio-querymodules.vcxproj">
-      <Project>{95a1571f-61be-4c51-be53-2f2dab280686}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gdbus.vcxproj">
-      <Project>{95a1571f-61be-4c51-be53-2f2dab280687}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
