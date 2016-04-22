@@ -1,0 +1,6 @@
+*.tar.gz
+*.tar
+*.7z
+openssl-src-win32-*
+openssl-src-win64-*
+openssl-*
