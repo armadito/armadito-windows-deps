@@ -1,3 +1,6 @@
+Dependencies
+============
+
 To build glib, you need an additional dependency:
 libintl-0.14.4-lib.zip
 which can be downloaded from:
@@ -30,3 +33,20 @@ VS12
                     *.h
 
 Once extracted, copy lib\libintl.lib to lib\intl.lib. This is needed for linking the glib
+
+Compilation
+===========
+
+Then, open glib solution in Visual Studio : 
+	
+	SOMEWHERE\armadito-windows-dependencies\glib\glib-2.47.92\build\win32\vs12\glib.sln
+
+Finally, you can build the solution.
+	
+Troubleshooting
+===============
+
+In case of error "pcre.h" not found :
+	- change configuration properties of the solution from "Debug" to "DebugBundledPCRE" and build again.
+
+
