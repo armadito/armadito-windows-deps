@@ -1,7 +1,7 @@
 Prerequisites
 ==============
 
-Then, get clamav 0.98.7 sources :
+Get clamav 0.98.7 sources :
    git clone https://github.com/vrtadmin/clamav-devel.git -b 0.98.7
 
 Clamav need openssl to be compiled, it means that you have to build openssl from armadito-dependencies\openssl before building clamav.
