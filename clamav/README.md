@@ -17,6 +17,12 @@ To do so :
 Build Instructions
 ==================
 
+Run the configure.bat script from within the git shell :
+   
+   $ cd armadito-windows-dependencies/clamav/clamav-devel/win32
+   $ configure.bat
+
 Open armadito-dependencies\clamav\clamav-devel\win32\libclamav.vcxproj with your Visual Studio.
+If your version of Visual Studio is > VS2010, you will have to accept upgrading all clamav projects.
 
 
