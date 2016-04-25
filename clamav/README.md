@@ -9,6 +9,7 @@ Clamav need openssl to be compiled, it means that you have to build openssl from
 Now, in order to configure Libclamav Visual Studio project, you can apply patch clamav_openssl.patch.
 Thus, the next Libclamav build will use your recently builded openssl from armadito-windows-dependencies.
 To do so :
+ 
    $ cd armadito-windows-dependencies/clamav
    $ git apply clamav_openssl.patch
    
