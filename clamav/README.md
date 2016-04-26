@@ -10,12 +10,15 @@ Now, in order to configure Libclamav Visual Studio project, you have to execute 
 Thus, the next Libclamav build will use your recently builded openssl from armadito-windows-dependencies. You need perl installed in your PATH. 
 To do so :
 
-   $ cd armadito-windows-dependencies/clamav
+   $ cd armadito-windows-dependencies\openssl\build_openssl
+   $ prepare_for_clamav_vs2013.bat
+   
+   $ cd armadito-windows-dependencies\clamav
    $ perl a6o_patch_clamav.pl
 
-If you want to build on VS2013, you may need to apply a patch :
+If you want to build on VS2013, you may need to apply an other patch :
  
-   $ cd armadito-windows-dependencies/clamav
+   $ cd armadito-windows-dependencies\clamav
    $ git apply vs2013_min_max_fix.patch
     
 Build Instructions
