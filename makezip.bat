@@ -10,10 +10,10 @@ mkdir deps\json-c\lib
 xcopy /Y /I json-c\lib deps\json-c\lib 
 
 REM copy the openssl tree
-mkdir deps\libopenssl\include\32bit
-xcopy /Y /I openssl\src\openssl-1.0.1p-32bit-release-DLL-VS2013\include\openssl\*.h deps\libopenssl\include\32bit
-mkdir deps\libopenssl\include\64bit
-xcopy /Y /I openssl\src\openssl-1.0.1p-64bit-release-DLL-VS2013\include\openssl\*.h deps\libopenssl\include\64bit
+mkdir deps\libopenssl\include\32bit\openssl
+xcopy /Y /I openssl\src\openssl-1.0.1p-32bit-release-DLL-VS2013\include\openssl\*.h deps\libopenssl\include\32bit\openssl
+mkdir deps\libopenssl\include\64bit\openssl
+xcopy /Y /I openssl\src\openssl-1.0.1p-64bit-release-DLL-VS2013\include\openssl\*.h deps\libopenssl\include\64bit\openssl
 mkdir deps\libopenssl\lib\32bit
 xcopy /Y /I openssl\src\openssl-1.0.1p-32bit-release-DLL-VS2013\bin\*.dll deps\libopenssl\lib\32bit 
 mkdir deps\libopenssl\lib\64bit
@@ -23,6 +23,9 @@ REM copy the libclamav tree
 mkdir deps\libclamav\lib\32bit
 xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\libclamav.dll deps\libclamav\lib\32bit
 xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\*.lib deps\libclamav\lib\32bit
+
+mkdir deps\libclamav\include
+xcopy /Y /I clamav\clamav-devel\libclamav\*.h deps\libclamav\include
 
 REM copy the glib tree (thanks bash and awk for the generation ;-)
 REM find glib/vs12 -type d | awk '{gsub("/", "\\", $1); printf("mkdir %s\nxcopy /Y /I %s\\* deps\\%s\n", $1, $1, $1);}'
