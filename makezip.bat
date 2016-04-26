@@ -69,4 +69,12 @@ xcopy /Y /I glib\vs12\Win32\share\glib-2.0\codegen\* deps\glib\vs12\Win32\share\
 mkdir glib\vs12\Win32\share\glib-2.0\schemas
 xcopy /Y /I glib\vs12\Win32\share\glib-2.0\schemas\* deps\glib\vs12\Win32\share\glib-2.0\schemas
 
+REM Add prebuilt libraries : libintl, libiconv and pcre dll.
+mkdir deps\libintl\lib
+xcopy /Y /I libintl\libintl3.dll deps\libintl\lib
+mkdir deps\libiconv\lib
+xcopy /Y /I libiconv\libiconv2.dll deps\libiconv\lib
+mkdir deps\pcre\lib
+xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
+
 7z a -r -tzip deps.zip deps
