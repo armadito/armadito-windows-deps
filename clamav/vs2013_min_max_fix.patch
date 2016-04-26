@@ -4,14 +4,14 @@ Date: Tue, 26 Apr 2016 11:04:04 +0200
 Subject: [PATCH] Patch clamav 0.98.7 VS2013
 
 ---
- clamav-devel/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h | 1 +
- clamav-devel/libclamav/c++/llvm/lib/Support/FormattedStream.cpp       | 1 +
+ libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h | 1 +
+ libclamav/c++/llvm/lib/Support/FormattedStream.cpp       | 1 +
  2 files changed, 2 insertions(+)
 
-diff --git a/clamav-devel/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h b/clamav-devel/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
+diff --git a/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h b/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
 index eb373fb..ccf3096 100644
---- a/clamav-devel/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
-+++ b/clamav-devel/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
+--- a/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
++++ b/libclamav/c++/llvm/include/llvm/CodeGen/JITCodeEmitter.h
 @@ -22,6 +22,7 @@
  #include "llvm/Support/MathExtras.h"
  #include "llvm/CodeGen/MachineCodeEmitter.h"
@@ -20,10 +20,10 @@ index eb373fb..ccf3096 100644
  
  using namespace std;
  
-diff --git a/clamav-devel/libclamav/c++/llvm/lib/Support/FormattedStream.cpp b/clamav-devel/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
+diff --git a/libclamav/c++/llvm/lib/Support/FormattedStream.cpp b/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
 index c72b5a1..231ae48 100644
---- a/clamav-devel/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
-+++ b/clamav-devel/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
+--- a/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
++++ b/libclamav/c++/llvm/lib/Support/FormattedStream.cpp
 @@ -13,6 +13,7 @@
  
  #include "llvm/Support/Debug.h"
