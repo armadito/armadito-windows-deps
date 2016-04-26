@@ -1,0 +1,25 @@
+From ccc017827d58f18289caef3f024f9c85605d5236 Mon Sep 17 00:00:00 2001
+From: Valentin Hamon <vhamon@teclib.com>
+Date: Tue, 26 Apr 2016 17:09:27 +0200
+Subject: [PATCH] linkhash bugfix for VS2013 C compiling
+
+---
+ json-c/json-c-master-2016-04-21/linkhash.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/json-c/json-c-master-2016-04-21/linkhash.h b/json-c/json-c-master-2016-04-21/linkhash.h
+index ead4818..90b8de5 100644
+--- a/json-c/json-c-master-2016-04-21/linkhash.h
++++ b/json-c/json-c-master-2016-04-21/linkhash.h
+@@ -330,7 +330,7 @@ int lh_table_resize(struct lh_table *t, int new_size);
+  * @param k a pointer to the key to lookup
+  * @return the key's hash
+  */
+-static inline unsigned long lh_get_hash(const struct lh_table *t, const void *k)
++static __inline unsigned long lh_get_hash(const struct lh_table *t, const void *k)
+ {
+ 	return t->hash_fn(k);
+ }
+-- 
+2.5.3
+
