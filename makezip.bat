@@ -22,7 +22,7 @@ xcopy /Y /I openssl\src\openssl-1.0.1p-64bit-release-DLL-VS2013\bin\*.dll deps\l
 REM copy the libclamav tree
 mkdir deps\libclamav\lib\32bit
 xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\libclamav.dll deps\libclamav\lib\32bit
-xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\*.lib deps\libclamav\lib\32bit
+xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\libclamav.lib deps\libclamav\lib\32bit
 
 mkdir deps\libclamav\include
 xcopy /Y /I clamav\clamav-devel\libclamav\*.h deps\libclamav\include
