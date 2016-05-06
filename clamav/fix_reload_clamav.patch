@@ -1,0 +1,28 @@
+From fca65af2ae760b36c42d0009553d31d6a52a71a6 Mon Sep 17 00:00:00 2001
+From: Valentin Hamon <vhamon@teclib.com>
+Date: Fri, 6 May 2016 10:38:05 +0200
+Subject: [PATCH] Fix multithread bug when reloading clamav
+
+---
+ libclamav/c++/bytecode2llvm.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/libclamav/c++/bytecode2llvm.cpp b/libclamav/c++/bytecode2llvm.cpp
+index 3366c41..3ff59cf 100644
+--- a/libclamav/c++/bytecode2llvm.cpp
++++ b/libclamav/c++/bytecode2llvm.cpp
+@@ -2632,6 +2632,11 @@ int bytecode_init(void)
+ {
+     // If already initialized return
+ #if LLVM_VERSION < 35
++	// Add by Ulrich FAUSTHER :: 20/01/2016 :: fix error when reloading clamav.
++	if (llvm_is_multithreaded()) {
++		do_shutdown();
++	}
++
+     if (llvm_is_multithreaded()) {
+ 	cli_warnmsg("bytecode_init: already initialized\n");
+ 	return CL_EARG;
+-- 
+2.5.3
+

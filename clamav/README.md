@@ -20,7 +20,13 @@ If you want to build on VS2013, you may need to apply an other patch :
  
    $ cd armadito-windows-dependencies\clamav\clamav-devel
    $ git apply ..\vs2013_min_max_fix.patch
-    
+   
+Clamav bugfixes : 
+   $ cd armadito-windows-dependencies\clamav\clamav-devel
+   $ git apply ..\fix_system32_crash.patch
+   $ git apply ..\fix_reload_clamav.patch
+   
+   
 Build Instructions
 ==================
 
