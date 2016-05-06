@@ -26,6 +26,9 @@ Clamav bugfixes :
    $ git apply ..\fix_system32_crash.patch
    $ git apply ..\fix_reload_clamav.patch
    
+To apply all patches in one shot (tested on cygwin) :
+   $ cd armadito-windows-dependencies\clamav\clamav-devel
+   $ git apply ..\*.patch
    
 Build Instructions
 ==================
