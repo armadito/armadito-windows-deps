@@ -23,12 +23,12 @@ If you want to build on VS2013, you may need to apply an other patch :
    
 Clamav bugfixes : 
    $ cd armadito-windows-dependencies\clamav\clamav-devel
-   $ git apply ..\fix_system32_crash.patch
-   $ git apply ..\fix_reload_clamav.patch
+   $ git apply ..\git-patches\fix_system32_crash.patch
+   $ git apply ..\git-patches\fix_reload_clamav.patch
    
 To apply all patches in one shot (tested on cygwin) :
    $ cd armadito-windows-dependencies\clamav\clamav-devel
-   $ git apply ..\*.patch
+   $ git apply ..\git-patches\*.patch
    
 Build Instructions
 ==================
@@ -40,6 +40,7 @@ Run the configure.bat script from within the git shell :
 
 Open armadito-dependencies\clamav\clamav-devel\win32\libclamav.vcxproj with your Visual Studio.
 If your version of Visual Studio is > VS2010, you will have to accept upgrading all projects.
+To upgrade manually from VS2010 to VS2013, you can right click on clamav solution and select "Retarget Solution".
 
 You can now set libclamav project build mode to Release if you wish.
 Finally, you can build libclamav project from Visual Studio. 
