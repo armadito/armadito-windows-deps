@@ -1,0 +1,27 @@
+From e8dcab957f0530fe7c228772c6e839c138baf2df Mon Sep 17 00:00:00 2001
+From: Valentin Hamon <vhamon@teclib.com>
+Date: Fri, 13 May 2016 10:30:11 +0200
+Subject: [PATCH] Fix a bug in clamav pdf parser
+
+---
+ libclamav/pdf.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/libclamav/pdf.c b/libclamav/pdf.c
+index e6195e2..62239e7 100644
+--- a/libclamav/pdf.c
++++ b/libclamav/pdf.c
+@@ -240,7 +240,9 @@ int pdf_findobj(struct pdf_struct *pdf)
+ 
+     genid = atoi(q);
+     q = findNextNonWSBack(q-1,start);
+-    while (q > start && isdigit(*q))
++
++	// modif Ulrich FAUSTHER :: 10/05/2016 :: bug fix :: add test *q > 0 :: q < 0 causes isdigit function crash.
++    while (q > start && (*q>0 && isdigit(*q)))
+         q--;
+ 
+     objid = atoi(q);
+-- 
+2.5.3
+
