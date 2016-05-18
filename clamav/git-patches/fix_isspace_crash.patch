@@ -1,0 +1,25 @@
+From c318e748afa960db3ef42f31062ef8172d8f9190 Mon Sep 17 00:00:00 2001
+From: Valentin Hamon <vhamon@teclib.com>
+Date: Wed, 18 May 2016 16:40:30 +0200
+Subject: [PATCH] fix isspace assert crash for some special chars
+
+---
+ libclamav/mbox.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libclamav/mbox.c b/libclamav/mbox.c
+index 0e23413..522e939 100644
+--- a/libclamav/mbox.c
++++ b/libclamav/mbox.c
+@@ -2688,7 +2688,7 @@ rfc822comments(const char *in, char *out)
+ 
+ 	assert(out != in);
+ 
+-	while(isspace(*in))
++	while(*in >= -1 && isspace(*in))
+ 		in++;
+ 
+ 	if(out == NULL) {
+-- 
+2.5.3
+
