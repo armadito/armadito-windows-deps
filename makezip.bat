@@ -3,6 +3,8 @@ rmdir /q /s deps
 mkdir deps
 pause
 
+set VERSION=0.9.0
+
 REM copy the json-c tree
 mkdir deps\json-c\include
 xcopy /Y /I json-c\include\*.h deps\json-c\include
@@ -80,4 +82,4 @@ xcopy /Y /I libiconv\libiconv2.dll deps\libiconv\lib
 mkdir deps\pcre\lib
 xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
 
-7z a -r -tzip deps.zip deps
+7z a -r -tzip deps-%VERSION%.zip deps
