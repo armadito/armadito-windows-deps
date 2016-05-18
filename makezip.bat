@@ -3,7 +3,7 @@ rmdir /q /s deps
 mkdir deps
 pause
 
-set VERSION=0.9.0
+set VERSION=1.0.0
 
 REM copy the json-c tree
 mkdir deps\json-c\include
