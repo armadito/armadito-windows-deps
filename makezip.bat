@@ -1,15 +1,27 @@
 del /q deps.zip
 rmdir /q /s deps
 mkdir deps
-pause
 
-set VERSION=1.0.0
+set VERSION=1.0.1
+
+call :copy_json Debug
+call :copy_json Release
+
+7z a -r -tzip deps-%VERSION%.zip deps
+
+goto :eof
 
 REM copy the json-c tree
-mkdir deps\json-c\include
-xcopy /Y /I json-c\include\*.h deps\json-c\include
-mkdir deps\json-c\lib
-xcopy /Y /I json-c\lib deps\json-c\lib 
+:copy_json
+setlocal
+set configuration=%~1
+mkdir deps\json-c\%configuration%\include
+xcopy /Y /I json-c\%configuration%\include\*.h deps\json-c\%configuration%\include
+mkdir deps\json-c\%configuration%\lib
+xcopy /Y /I json-c\%configuration%\lib deps\json-c\%configuration%\lib 
+endlocal
+goto :eof
+
 
 REM copy the openssl tree
 mkdir deps\libopenssl\include\32bit\openssl
@@ -81,5 +93,3 @@ mkdir deps\libiconv\lib
 xcopy /Y /I libiconv\libiconv2.dll deps\libiconv\lib
 mkdir deps\pcre\lib
 xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
-
-7z a -r -tzip deps-%VERSION%.zip deps
