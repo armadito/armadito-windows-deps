@@ -8,18 +8,19 @@ Thanks to him. If you got some trouble about this tutorial, please refer to :
 Prerequisites
 =============
 
-Windows with Visual Studio 2010, 2013 or 2015 installed
-Python 2.7 or 3.x installed in your PATH
-7-zip installed
+- Visual Studio 2010, 2013 or 2015 installed
+- Python 2.7 or 3.x installed in your PATH
+- Perl installed in your PATH
+- 7-zip installed
 
 Instructions
 ============
 
-You need to Python 2.7 or 3.5 installed and on your PATH.
+You need to Python 2.7 or 3.5 installed and on your PATH. Same for Perl (ActivePerl has been tested).
 
 Download openssl sources tarball tar.gz file in C:\\<...>\\armadito-windows-dependencies\\openssl\\src.
 
-Note: It has been tested with 1.0.1p actually. You are free to try other versions anyway. 
+Note: It has been tested with 1.0.1<N> actually. You are free to try other versions anyway. 
 If you want to compile openssl versions 1.0.2X, you need to uncomment following line multiple times in rebuild_*.cmd file : "call ms\do_nasm.bat".
 
 Create a virtual drive as following for example :
@@ -28,7 +29,8 @@ Create a virtual drive as following for example :
 Later on, to remove T drive : 
   subst T: /D
   
-Set openssl version in build_openssl\rebuild_openssl_vsXXXX.cmd 
+Set openssl version in build_openssl\rebuild_openssl_vsXXXX.cmd and adjust according to your version of openssl.
+
 Then, check for 7-zip and Visual Studio paths in this same file.
  
 Finally, open a file explorer and just double click on selected rebuild_openssl_vsXXXX.cmd script. "Great fun !", Gerson.

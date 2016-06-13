@@ -1,7 +1,9 @@
 set src = %cd%
 
 T:
-set OPENSSL_VERSION=1.0.1p
+REM set OPENSSL_VERSION=1.0.1p
+REM updated to version 1.0.1t
+set OPENSSL_VERSION=1.0.1t
 set SEVENZIP="C:\Program Files\7-Zip\7z.exe"
 set VS2013="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat"
 set VS2013_AMD64="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\vcvars64.bat"
