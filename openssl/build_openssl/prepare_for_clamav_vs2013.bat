@@ -1,6 +1,6 @@
 REM -- Prepare openssl before clamav building - VS2013
 
-set OPENSSL_VERSION=1.0.1p
+set OPENSSL_VERSION=1.0.1t
 
 mkdir ..\out\include\32bit\openssl
 xcopy /Y /I ..\src\openssl-%OPENSSL_VERSION%-32bit-release-DLL-VS2013\include\openssl\*.h ..\out\include\32bit\openssl

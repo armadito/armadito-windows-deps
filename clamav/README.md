@@ -31,7 +31,10 @@ Clamav bugfixes :
 To apply all patches in one shot (tested on cygwin) :
    $ cd armadito-windows-dependencies\clamav\clamav-devel
    $ git apply ..\git-patches\*.patch
-   
+
+WARNING: git for windows may give errors when applying patches and complaining about "trailing whitespace". In this case, use the following command line:
+   $ git apply -whitespace=strip <<patch files>>
+
 Build Instructions
 ==================
 
