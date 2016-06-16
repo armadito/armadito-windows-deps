@@ -34,27 +34,27 @@ ren openssl-%OPENSSL_VERSION% openssl-src-win64-VS2013
 CALL %VS2013%
 
 cd \openssl-src-win32-VS2013
-perl Configure VC-WIN32 --prefix=T:\openssl-%OPENSSL_VERSION%-32bit-release-DLL-VS2013
+perl Configure VC-WIN32 --prefix=T:\openssl-%OPENSSL_VERSION%-32bit-Release-DLL-VS2013
 call ms\do_ms.bat
 REM call ms\do_nasm.bat
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak install
 
-REM perl Configure debug-VC-WIN32 --prefix=T:\openssl-%OPENSSL_VERSION%-32bit-debug-DLL-VS2013
-REM call ms\do_ms.bat
+perl Configure debug-VC-WIN32 --prefix=T:\openssl-%OPENSSL_VERSION%-32bit-Debug-DLL-VS2013
+call ms\do_ms.bat
 REM call ms\do_nasm.bat
-REM nmake -f ms\ntdll.mak
-REM nmake -f ms\ntdll.mak install
+nmake -f ms\ntdll.mak
+nmake -f ms\ntdll.mak install
 
 CALL %VS2013_AMD64%
 
 cd \openssl-src-win64-VS2013
-perl Configure VC-WIN64A --prefix=T:\openssl-%OPENSSL_VERSION%-64bit-release-DLL-VS2013
+perl Configure VC-WIN64A --prefix=T:\openssl-%OPENSSL_VERSION%-64bit-Release-DLL-VS2013
 call ms\do_win64a.bat
 nmake -f ms\ntdll.mak
 nmake -f ms\ntdll.mak install
 
-REM perl Configure debug-VC-WIN64A --prefix=T:\openssl-%OPENSSL_VERSION%-64bit-debug-DLL-VS2013
-REM call ms\do_win64a.bat
-REM nmake -f ms\ntdll.mak
-REM nmake -f ms\ntdll.mak install
+perl Configure debug-VC-WIN64A --prefix=T:\openssl-%OPENSSL_VERSION%-64bit-Debug-DLL-VS2013
+call ms\do_win64a.bat
+nmake -f ms\ntdll.mak
+nmake -f ms\ntdll.mak install
