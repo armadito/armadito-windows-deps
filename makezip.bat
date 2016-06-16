@@ -1,19 +1,37 @@
-set VERSION=1.0.1
+set VERSION=1.1.0
 set OPENSSL_VERSION=1.0.1t
-
 set ZIP_FILE=deps-%VERSION%.zip
+
 rmdir /q /s deps
 mkdir deps
 del /q %ZIP_FILE%
 
+REM json-c
+call :copy_json Win32 Debug
+call :copy_json Win32 Release
+call :copy_json x64 Debug
+call :copy_json x64 Release
 
-call :copy_json Debug
-call :copy_json Release
-call :copy_glib Debug
-call :copy_glib Release
-call :copy_openssl 32 %OPENSSL_VERSION%
-call :copy_openssl 64 %OPENSSL_VERSION%
+REM glib
+call :copy_glib Win32 Debug
+call :copy_glib Win32 Release
 
+REM openssl
+call :copy_openssl Win32 Debug
+call :copy_openssl Win32 Release
+call :copy_openssl x64 Debug
+call :copy_openssl x64 Release
+
+REM clamav
+call :copy_libclamav Win32 Debug
+call :copy_libclamav Win32 Release
+call :copy_libclamav x64 Debug
+call :copy_libclamav x64 Release
+
+REM prebuilt
+call :copy_prebuilt
+
+REM zip the result
 7z a -r -tzip %ZIP_FILE% deps
 
 goto :eof
@@ -21,11 +39,12 @@ goto :eof
 REM copy the json-c tree
 :copy_json
 setlocal
-set configuration=%~1
-mkdir deps\json-c\%configuration%\include
-xcopy /Y /I json-c\%configuration%\include\*.h deps\json-c\%configuration%\include
-mkdir deps\json-c\%configuration%\lib
-xcopy /Y /I json-c\%configuration%\lib deps\json-c\%configuration%\lib 
+set platform=%~1
+set configuration=%~2
+set fromdir=json-c\%platform%\%configuration%
+set todir=deps\%fromdir%
+xcopy /Y /I %fromdir%\include\*.h %todir%\include
+xcopy /Y /I %fromdir%\lib %todir%\lib 
 endlocal
 goto :eof
 
@@ -33,54 +52,73 @@ goto :eof
 REM copy the glib tree
 :copy_glib
 setlocal
-set configuration=%~1
-xcopy /Y /I glib\vs12\Win32\%configuration%\bin\* deps\glib\vs12\Win32\%configuration%\bin
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\* deps\glib\vs12\Win32\%configuration%\include
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\gio-win32-2.0\* deps\glib\vs12\Win32\%configuration%\include\gio-win32-2.0
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\gio-win32-2.0\gio\* deps\glib\vs12\Win32\%configuration%\include\gio-win32-2.0\gio
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\glib-2.0\* deps\glib\vs12\Win32\%configuration%\include\glib-2.0
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\glib-2.0\gio\* deps\glib\vs12\Win32\%configuration%\include\glib-2.0\gio
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\glib-2.0\glib\* deps\glib\vs12\Win32\%configuration%\include\glib-2.0\glib
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\glib-2.0\glib\deprecated\* deps\glib\vs12\Win32\%configuration%\include\glib-2.0\glib\deprecated
-xcopy /Y /I glib\vs12\Win32\%configuration%\include\glib-2.0\gobject\* deps\glib\vs12\Win32\%configuration%\include\glib-2.0\gobject
-xcopy /Y /I glib\vs12\Win32\%configuration%\lib\* deps\glib\vs12\Win32\%configuration%\lib
-xcopy /Y /I glib\vs12\Win32\%configuration%\lib\glib-2.0\* deps\glib\vs12\Win32\%configuration%\lib\glib-2.0
-xcopy /Y /I glib\vs12\Win32\%configuration%\lib\glib-2.0\include\* deps\glib\vs12\Win32\%configuration%\lib\glib-2.0\include
-xcopy /Y /I glib\vs12\Win32\%configuration%\lib\pkgconfig\* deps\glib\vs12\Win32\%configuration%\lib\pkgconfig
-xcopy /Y /I glib\vs12\Win32\%configuration%\manifest\* deps\glib\vs12\Win32\%configuration%\manifest
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\* deps\glib\vs12\Win32\%configuration%\share
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\gettext\* deps\glib\vs12\Win32\%configuration%\share\gettext
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\gettext\intl\* deps\glib\vs12\Win32\%configuration%\share\gettext\intl
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\glib-2.0\* deps\glib\vs12\Win32\%configuration%\share\glib-2.0
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\glib-2.0\codegen\* deps\glib\vs12\Win32\%configuration%\share\glib-2.0\codegen
-xcopy /Y /I glib\vs12\Win32\%configuration%\share\glib-2.0\schemas\* deps\glib\vs12\Win32\%configuration%\share\glib-2.0\schemas
+set platform=%~1
+set configuration=%~2
+set fromdir=glib\vs12\%platform%\%configuration%
+set todir=deps\%fromdir%
+xcopy /Y /I %fromdir%\bin\* %todir%\bin
+xcopy /Y /I %fromdir%\include\* %todir%\include
+xcopy /Y /I %fromdir%\include\gio-win32-2.0\* %todir%\include\gio-win32-2.0
+xcopy /Y /I %fromdir%\include\gio-win32-2.0\gio\* %todir%\include\gio-win32-2.0\gio
+xcopy /Y /I %fromdir%\include\glib-2.0\* %todir%\include\glib-2.0
+xcopy /Y /I %fromdir%\include\glib-2.0\gio\* %todir%\include\glib-2.0\gio
+xcopy /Y /I %fromdir%\include\glib-2.0\glib\* %todir%\include\glib-2.0\glib
+xcopy /Y /I %fromdir%\include\glib-2.0\glib\deprecated\* %todir%\include\glib-2.0\glib\deprecated
+xcopy /Y /I %fromdir%\include\glib-2.0\gobject\* %todir%\include\glib-2.0\gobject
+xcopy /Y /I %fromdir%\lib\* %todir%\lib
+xcopy /Y /I %fromdir%\lib\glib-2.0\* %todir%\lib\glib-2.0
+xcopy /Y /I %fromdir%\lib\glib-2.0\include\* %todir%\lib\glib-2.0\include
+xcopy /Y /I %fromdir%\lib\pkgconfig\* %todir%\lib\pkgconfig
+xcopy /Y /I %fromdir%\manifest\* %todir%\manifest
+xcopy /Y /I %fromdir%\share\* %todir%\share
+xcopy /Y /I %fromdir%\share\gettext\* %todir%\share\gettext
+xcopy /Y /I %fromdir%\share\gettext\intl\* %todir%\share\gettext\intl
+xcopy /Y /I %fromdir%\share\glib-2.0\* %todir%\share\glib-2.0
+xcopy /Y /I %fromdir%\share\glib-2.0\codegen\* %todir%\share\glib-2.0\codegen
+xcopy /Y /I %fromdir%\share\glib-2.0\schemas\* %todir%\share\glib-2.0\schemas
 endlocal
 goto :eof
 
 REM copy the openssl tree
 :copy_openssl
 setlocal
-set bits=%~1
-set version=%~2
-mkdir deps\libopenssl\include\%bits%bit\openssl
-xcopy /Y /I openssl\src\openssl-%version%-%bits%bit-release-DLL-VS2013\include\openssl\*.h deps\libopenssl\include\%bits%bit\openssl
-mkdir deps\libopenssl\lib\%bits%bit
-xcopy /Y /I openssl\src\openssl-%version%-%bits%bit-release-DLL-VS2013\bin\*.dll deps\libopenssl\lib\%bits%bit 
+set platform=%~1
+set configuration=%~2
+if %platform% == "Win32" (
+	set bits=32
+) else (
+	set bits=64
+)
+set fromdir=openssl\src\openssl-%OPENSSL_VERSION%-%bits%bit-%configuration%-DLL-VS2013
+set todir=deps\openssl\%platform%\%configuration%
+xcopy /Y /I %fromdir%\include\openssl\*.h %todir%\include\openssl
+xcopy /Y /I %fromdir%\bin\*.dll %todir%\lib 
 endlocal
 goto :eof
 
 REM copy the libclamav tree
-mkdir deps\libclamav\lib\32bit
-xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\libclamav.dll deps\libclamav\lib\32bit
-xcopy /Y /I clamav\clamav-devel\win32\Win32\Debug\libclamav.lib deps\libclamav\lib\32bit
-
-mkdir deps\libclamav\include
-xcopy /Y /I clamav\clamav-devel\libclamav\*.h deps\libclamav\include
+:copy_libclamav
+setlocal
+set platform=%~1
+set configuration=%~2
+set fromdir=clamav\clamav-devel\win32\%platform%\%configuration%
+set todir=deps\libclamav\%platform%\%configuration%
+mkdir %todir%\lib
+xcopy /Y /I %fromdir%\libclamav.dll %todir%\lib
+xcopy /Y /I %fromdir%\libclamav.lib %todir%\lib
+mkdir %todir%\include
+xcopy /Y /I clamav\clamav-devel\libclamav\*.h %todir%\include
+endlocal
+goto :eof
 
 REM Add prebuilt libraries : libintl, libiconv and pcre dll.
+:copy_prebuilt
+setlocal
 mkdir deps\libintl\lib
 xcopy /Y /I libintl\libintl3.dll deps\libintl\lib
 mkdir deps\libiconv\lib
 xcopy /Y /I libiconv\libiconv2.dll deps\libiconv\lib
 mkdir deps\pcre\lib
 xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
+endlocal
+goto :eof
