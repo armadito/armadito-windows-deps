@@ -54,8 +54,8 @@ REM copy the glib tree
 setlocal
 set platform=%~1
 set configuration=%~2
-set fromdir=glib\vs12\%platform%\%configuration%
-set todir=deps\%fromdir%
+set fromdir=glib\%platform%\%configuration%
+set todir=deps\glib\%platform%\%configuration%
 xcopy /Y /I %fromdir%\bin\* %todir%\bin
 xcopy /Y /I %fromdir%\include\* %todir%\include
 xcopy /Y /I %fromdir%\include\gio-win32-2.0\* %todir%\include\gio-win32-2.0
