@@ -1,40 +1,68 @@
+@echo off
 set VERSION=1.1.0
 set OPENSSL_VERSION=1.0.1t
-set ZIP_FILE=deps-%VERSION%.zip
+
+if [%1] == [] (
+	call :usage
+	exit /b 2
+)
+
+set ZIP_NAME=%~1
+
+if NOT %ZIP_NAME% == core (
+	if NOT %ZIP_NAME% == clamav (
+		call :usage
+		exit /b 2
+	)
+)
+
+set ZIP_FILE=deps-%ZIP_NAME%-%VERSION%.zip
+@echo on
 
 rmdir /q /s deps
 mkdir deps
 del /q %ZIP_FILE%
 
-REM json-c
-call :copy_json Win32 Debug
-call :copy_json Win32 Release
-call :copy_json x64 Debug
-call :copy_json x64 Release
-
-REM glib
-call :copy_glib Win32 Debug
-call :copy_glib Win32 Release
-
-REM openssl
-call :copy_openssl Win32 Debug
-call :copy_openssl Win32 Release
-call :copy_openssl x64 Debug
-call :copy_openssl x64 Release
-
-REM clamav
-call :copy_libclamav Win32 Debug
-call :copy_libclamav Win32 Release
-call :copy_libclamav x64 Debug
-call :copy_libclamav x64 Release
-
-REM prebuilt
-call :copy_prebuilt
+REM call the function that copies to deps\ subdir
+call :do_%ZIP_NAME%
 
 REM zip the result
 7z a -r -tzip %ZIP_FILE% deps
 
 goto :eof
+
+:usage
+	echo error: missing or wrong argument
+	echo usage: makezip.bat ZIP_NAME
+	echo        ZIP_NAME = core or clamav
+goto :eof
+
+:do_core
+REM json-c
+call :copy_json Win32 Debug
+call :copy_json Win32 Release
+call :copy_json x64 Debug
+call :copy_json x64 Release
+REM glib
+call :copy_glib Win32 Debug
+call :copy_glib Win32 Release
+REM prebuilt
+call :copy_prebuilt
+goto :eof
+
+:do_clamav
+REM openssl
+call :copy_openssl Win32 Debug
+call :copy_openssl Win32 Release
+call :copy_openssl x64 Debug
+call :copy_openssl x64 Release
+REM clamav
+call :copy_libclamav Win32 Debug
+call :copy_libclamav Win32 Release
+call :copy_libclamav x64 Debug
+call :copy_libclamav x64 Release
+goto :eof
+
 
 REM copy the json-c tree
 :copy_json
@@ -118,7 +146,7 @@ mkdir deps\libintl\lib
 xcopy /Y /I libintl\libintl3.dll deps\libintl\lib
 mkdir deps\libiconv\lib
 xcopy /Y /I libiconv\libiconv2.dll deps\libiconv\lib
-mkdir deps\pcre\lib
-xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
+REM mkdir deps\pcre\lib
+REM xcopy /Y /I pcre\pcre3.dll deps\pcre\lib
 endlocal
 goto :eof
