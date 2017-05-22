@@ -39,10 +39,10 @@ goto :eof
 
 :do_core
 REM json-c
-call :copy_json Win32 Debug
-call :copy_json Win32 Release
-call :copy_json x64 Debug
-call :copy_json x64 Release
+REM call :copy_json Win32 Debug
+REM call :copy_json Win32 Release
+REM call :copy_json x64 Debug
+REM call :copy_json x64 Release
 REM glib
 call :copy_glib Win32 Debug
 call :copy_glib Win32 Release
@@ -65,16 +65,16 @@ goto :eof
 
 
 REM copy the json-c tree
-:copy_json
-setlocal
-set platform=%~1
-set configuration=%~2
-set fromdir=json-c\%platform%\%configuration%
-set todir=deps\%fromdir%
-xcopy /Y /I %fromdir%\include\*.h %todir%\include
-xcopy /Y /I %fromdir%\lib %todir%\lib 
-endlocal
-goto :eof
+REM :copy_json
+REM setlocal
+REM set platform=%~1
+REM set configuration=%~2
+REM set fromdir=json-c\%platform%\%configuration%
+REM set todir=deps\%fromdir%
+REM xcopy /Y /I %fromdir%\include\*.h %todir%\include
+REM xcopy /Y /I %fromdir%\lib %todir%\lib 
+REM endlocal
+REM goto :eof
 
 
 REM copy the glib tree
