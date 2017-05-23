@@ -18,5 +18,17 @@ Once CMake installed, you can create Visual studio project files from the comman
    cd build
    cmake -G "Visual Studio 12 2013 Win64" -DJANSSON_BUILD_DOCS=OFF
 
+To build from Visual Studio:
+
+* Open armadito-windows-dependencies\jansson\jansson\jansson.sln
+* Build Solution in Visual Studio
+
+To build from command line and create distribution:
+
+   makedist.bat
+
+Note: as makedist.bat calls msbuild, this batch file must be launched
+from "Developer Command Prompt for VSxxxx" (command prompt for Visual
+Studio that has the right build environment)
 
 
