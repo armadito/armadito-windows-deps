@@ -1,6 +1,13 @@
 @echo off
-set VERSION=1.1.0
+set VERSION=1.2.0
 set OPENSSL_VERSION=1.0.1t
+set SEVEN_ZIP="c:\Program Files\7-Zip\7z.exe"
+
+REM you need 7zip installed
+if not exist %SEVEN_ZIP% (
+   echo you need 7zip installed
+   exit /b 3
+)
 
 if [%1] == [] (
 	call :usage
@@ -27,7 +34,7 @@ REM call the function that copies to deps\ subdir
 call :do_%ZIP_NAME%
 
 REM zip the result
-7z a -r -tzip %ZIP_FILE% deps
+%SEVEN_ZIP% a -r -tzip %ZIP_FILE% deps
 
 goto :eof
 
@@ -38,11 +45,9 @@ goto :eof
 goto :eof
 
 :do_core
-REM json-c
-REM call :copy_json Win32 Debug
-REM call :copy_json Win32 Release
-REM call :copy_json x64 Debug
-REM call :copy_json x64 Release
+REM jansson
+call :copy_jansson x64 Debug
+call :copy_jansson x64 Release
 REM glib
 call :copy_glib Win32 Debug
 call :copy_glib Win32 Release
@@ -64,17 +69,17 @@ call :copy_libclamav x64 Release
 goto :eof
 
 
-REM copy the json-c tree
-REM :copy_json
-REM setlocal
-REM set platform=%~1
-REM set configuration=%~2
-REM set fromdir=json-c\%platform%\%configuration%
-REM set todir=deps\%fromdir%
-REM xcopy /Y /I %fromdir%\include\*.h %todir%\include
-REM xcopy /Y /I %fromdir%\lib %todir%\lib 
-REM endlocal
-REM goto :eof
+copy the jansson tree
+:copy_jansson
+setlocal
+set platform=%~1
+set configuration=%~2
+set fromdir=jansson\%platform%\%configuration%
+set todir=deps\%fromdir%
+xcopy /Y /I %fromdir%\include\*.h %todir%\include
+xcopy /Y /I %fromdir%\lib %todir%\lib 
+endlocal
+goto :eof
 
 
 REM copy the glib tree
