@@ -13,10 +13,9 @@ CMake can be downloaded from:
 Once CMake installed, you can create Visual studio project files from the command line:
 
    cd jansson
-
    md build
    cd build
-   cmake -G "Visual Studio 12 2013 Win64" -DJANSSON_BUILD_DOCS=OFF
+   cmake -G "Visual Studio 12 2013 Win64" -DJANSSON_BUILD_DOCS=OFF ..
 
 To build from Visual Studio:
 
