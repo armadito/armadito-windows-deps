@@ -36,6 +36,8 @@ call :do_%ZIP_NAME%
 REM zip the result
 %SEVEN_ZIP% a -r -tzip %ZIP_FILE% deps
 
+rmdir /q /s deps
+
 goto :eof
 
 :usage
