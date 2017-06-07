@@ -14,7 +14,7 @@ set msvs=vs14
 
 msbuild glib-2.47.92\build\win32\%msvs%\glib.sln /t:rebuild /p:Platform=%platform% /p:Configuration=%pcre_configuration%
 
-if not exist %msvs%\%platform%\%configuration% mkdir %platform%\%configuration%
+if not exist %platform%\%configuration% mkdir %platform%\%configuration%
 xcopy %msvs%\%platform%\bin %platform%\%configuration%\bin /D /S /I /Y
 xcopy %msvs%\%platform%\lib %platform%\%configuration%\lib /D /S /I /Y
 xcopy %msvs%\%platform%\include %platform%\%configuration%\include /D /S /I /Y
